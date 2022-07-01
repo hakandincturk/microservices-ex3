@@ -9,6 +9,11 @@ const StartServer = async() => {
     const app = express();
     
     await databaseConnection();
+
+    app.get('/fs', (req, res) => {
+        resizeBy.json({type: true, message: 'successful'})
+    });
+
     
     await expressApp(app);
 
