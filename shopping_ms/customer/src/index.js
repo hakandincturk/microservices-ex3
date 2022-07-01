@@ -3,6 +3,9 @@ const { PORT } = require('./config');
 const { databaseConnection } = require('./database');
 const expressApp = require('./express-app');
 
+const consola = require('consola');
+
+
 const StartServer = async() => {
 
     const app = express();
@@ -12,7 +15,7 @@ const StartServer = async() => {
     await expressApp(app);
 
     app.listen(PORT, () => {
-        console.log(`listening to port ${PORT}`);
+        consola.success({message: `customer service listening to port ${PORT}`, badge: true});
     })
     .on('error', (err) => {
         console.log(err);

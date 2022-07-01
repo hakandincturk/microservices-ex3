@@ -1,9 +1,11 @@
 const express = require('express');
 const consola = require('consola');
 const proxy = require('express-http-proxy');
+const cors = require('cors')
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/customer', proxy('http://localhost:8001'))

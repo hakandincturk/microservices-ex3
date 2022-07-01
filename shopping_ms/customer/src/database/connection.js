@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { DB_URL } = require('../config');
+const { DB_URL, PORT } = require('../config');
 
 module.exports = async() => {
 
@@ -7,13 +7,12 @@ module.exports = async() => {
         await mongoose.connect(DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true
         });
         console.log('Db Connected');
         
     } catch (error) {
         console.log('Error ============')
-        console.log(error);
+        console.log(error.message);
         process.exit(1);
     }
  
