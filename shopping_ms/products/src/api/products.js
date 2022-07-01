@@ -63,11 +63,14 @@ module.exports = (app) => {
     app.put('/wishlist',UserAuth, async (req,res,next) => {
 
         const { _id } = req.user;
+
+        console.log('product.js, ', _id)
         
         //get payload // to send to customer service
 
         try {
-            const { data } = await service.GetProductPayload(_id, {productId: req.body._id}, 'ADD_TO_WHISLIST');
+            const { data } = await service.GetProductPayload(_id, {productId: req.body._id}, 'ADD_TO_WISHLIST');
+            console.log('product.js, ', data)
 
             PublishCustomerEvent(data);
             return res.status(200).json(data.data.product);
@@ -83,7 +86,7 @@ module.exports = (app) => {
 
         try {
 
-            const { data } = await service.GetProductPayload(_id, { productId }, 'REMOVE_FROM_WHISLIST');
+            const { data } = await service.GetProductPayload(_id, { productId }, 'REMOVE_FROM_WISHLIST');
             PublishCustomerEvent(data);
 
             return res.status(200).json(data.data.product);

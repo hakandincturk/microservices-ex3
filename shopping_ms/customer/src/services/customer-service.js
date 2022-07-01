@@ -112,6 +112,9 @@ class CustomerService {
 
     async AddToWishlist(customerId, product){
         try {
+
+            console.log("customer-service.js->addToWishlist, ", customerId, product)
+
             const wishlistResult = await this.repository.AddWishlistItem(customerId, product);        
            return FormateData(wishlistResult);
     
@@ -139,8 +142,14 @@ class CustomerService {
     }
 
     async SubscribeEvents(payload){
+
+        console.log('customer-service.js->event, ', payload)
  
         const { event, data } =  payload;
+
+        console.log('customer-service.js->event, ', event)
+        console.log('customer-service.js->event, ', data)
+
 
         const { userId, product, order, qty } = data;
 
