@@ -44,6 +44,7 @@ module.exports = (app) => {
     app.get('/cart', UserAuth, async(req,res,next) => {
 
         const { _id } = req.user;
+        console.log(_id)
 
         try {
             

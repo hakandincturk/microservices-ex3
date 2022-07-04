@@ -49,7 +49,7 @@ class ShoppingService {
         }
     }
 
-    async ManageCart(){
+    async ManageCart(customerId, item, qty, isRemove){
         try {
             const orders = await this.repository.AddCartItem(customerId, item, qty, isRemove);
             return FormateData(orders)
