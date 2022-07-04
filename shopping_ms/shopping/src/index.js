@@ -4,13 +4,17 @@ const { databaseConnection } = require('./database');
 const expressApp = require('./express-app');
 const consola = require('consola');
 
+const { CreateChannel } = require('./utils');
+
 const StartServer = async() => {
 
     const app = express();
     
     await databaseConnection();
     
-    await expressApp(app);
+    const channel = await CreateChannel();
+
+    await expressApp(app, channel);
 
     app.listen(PORT, () => {
         consola.success({message: `shopping service listening to port ${PORT}`, badge: true});

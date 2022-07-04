@@ -3,6 +3,7 @@ const { PORT } = require('./config');
 const { databaseConnection } = require('./database');
 const expressApp = require('./express-app');
 const consola = require('consola');
+const { CreateChannel } = require('./utils');
 
 const StartServer = async() => {
 
@@ -10,12 +11,9 @@ const StartServer = async() => {
     
     await databaseConnection();
 
-    app.get('/fs', (req, res) => {
-        resizeBy.json({type: true, message: 'successful'})
-    });
-
+    const channel = await CreateChannel();
     
-    await expressApp(app);
+    await expressApp(app, channel);
 
     app.listen(PORT, () => {
         consola.success({message: `product service listening to port ${PORT}`, badge: true});
