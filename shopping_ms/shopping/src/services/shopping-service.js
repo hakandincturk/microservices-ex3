@@ -59,6 +59,8 @@ class ShoppingService {
     }
 
     async SubscribeEvents(payload){
+
+        payload = JSON.parse(payload);
  
         const { event, data } =  payload;
 

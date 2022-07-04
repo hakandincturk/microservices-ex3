@@ -143,13 +143,9 @@ class CustomerService {
 
     async SubscribeEvents(payload){
 
-        console.log('customer-service.js->event, ', payload)
- 
+        payload = JSON.parse(payload);
+
         const { event, data } =  payload;
-
-        console.log('customer-service.js->event, ', event)
-        console.log('customer-service.js->event, ', data)
-
 
         const { userId, product, order, qty } = data;
 
